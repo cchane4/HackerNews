@@ -60,6 +60,18 @@ class SubmissionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+#method for creating an upvote specific to a single user
+  def upvote
+    @submission = Submission.find(params[:id])
+    @submission.upvote_by current_user
+    redirect_to :back
+  end
+#method for creating a downvote specific to a single user
+  def downvote
+    @submission = Submission.find(params[:id])
+    @submission.downvote_by current_user
+    redirect_to :back
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
