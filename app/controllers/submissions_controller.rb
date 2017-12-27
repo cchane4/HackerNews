@@ -1,10 +1,10 @@
 class SubmissionsController < ApplicationController
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action  :authenticate_user!, except: [:index, :show]
   # GET /submissions
   # GET /submissions.json
   def index
-    @submissions = Submission.all
+    @submissions = Submission.order(cached_votes_total: :desc)
   end
 
   # GET /submissions/1
